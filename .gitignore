@@ -1,0 +1,47 @@
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.tgz
+
+# Env & secrets
+.env
+.env.*
+!.env.example
+
+
+# Build output
+dist/
+*.tsbuildinfo
+
+# Logs
+logs/
+*.log
+
+# Coverage & test artifacts
+coverage/
+.nyc_output/
+jest-test-results.json
+
+# SQLite (db + sidecar files)
+state.sqlite
+*.sqlite
+*.sqlite-journal
+*.sqlite-wal
+*.sqlite-shm
+
+# Local tooling/editor
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Misc caches
+.cache/
+.tmp/
+
+# Docker/containers (if you add later)
+docker-data/
