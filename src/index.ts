@@ -2,7 +2,7 @@ import "dotenv/config";
 import express from "express";
 import { oneDayMs, now } from "./helpers";
 import { fetchRecentBaseTokens, fetchTokenInfo, TokenInfo } from "./tokens";
-import { pub, wallet, account } from "./wallet_config";
+import { publicClient, wallet, account } from "./wallet_config";
 import {
   TP_PCT,
   SL_PCT,
@@ -23,7 +23,7 @@ async function ensureApproval(
   amount: bigint,
 ) {
   const [allow] = (await Promise.all([
-    pub.readContract({
+    publicClient.readContract({
       address: token,
       abi: erc20,
       functionName: "allowance",
@@ -119,7 +119,7 @@ async function tryBuy(addr: `0x${string}`, info: TokenInfo) {
   const res = await buyTokenAerodrome(usdcIn, addr);
   console.log("BUY tx:", res);
   // After buy, record token balance as qty
-  const bal = (await pub.readContract({
+  const bal = (await publicClient.readContract({
     address: addr,
     abi: erc20,
     functionName: "balanceOf",
@@ -139,7 +139,7 @@ async function tryBuy(addr: `0x${string}`, info: TokenInfo) {
 }
 
 async function trySell(addr: `0x${string}`, decimals: number) {
-  const bal = (await pub.readContract({
+  const bal = (await publicClient.readContract({
     address: addr,
     abi: erc20,
     functionName: "balanceOf",
